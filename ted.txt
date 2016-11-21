@@ -1,0 +1,31 @@
+Features
+ - Type into buffer
+ - File IO
+ - Command system of some sort
+   - Insert line (after current)
+       > add text
+   - Insert lines (after current)
+       > add
+       line1
+       line2
+       .
+   - Delete line
+       > del 1
+   - Delete lines
+       > del 1:5
+   - Replace line
+   - Append to line
+   - Print line(s)
+       > 1
+       > 1:5
+   - Go to line
+   - Move lines
+   - Search
+
+
+
+1 hello world
+> go 2
+
+2 goodbye
+> 
