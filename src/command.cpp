@@ -4,7 +4,7 @@
 namespace ted {
 	size_t command_parser::parse_number(const string& str, size_t& i) {
 		string s;
-		while(i < str.size() && isdigit(i)) s += str[i];
+		while(i < str.size() && isdigit(str[i])) s += str[i++];
 		return atoll(s.c_str());
 	}
 	unique_ptr<text_object> command_parser::parse_text_object(const string& str, size_t& i) {
@@ -23,10 +23,10 @@ namespace ted {
 	unique_ptr<command> command_parser::parse(const string& str) {
 		size_t i = 0;
 		auto fto = parse_text_object(str, i);
-		if(fto != nullptr) { return make_unique<commands::print_command>(move(fto)); }
+		if(fto != nullptr) return make_unique<commands::print_command>(move(fto));
 		auto next_space = str.find_first_of(' ');
-		string kwd = str.substr(i, i-next_space);
-		cout << "found keyword  " << kwd << endl;
+		string kwd = str.substr(i, next_space-i);
+		if (kwd == "q" || kwd == "exit" || kwd == "quit") return make_unique<commands::quit_command>(); 
 		return nullptr;
 	}
 }
