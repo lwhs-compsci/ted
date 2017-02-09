@@ -5,4 +5,5 @@
 #include <list>
 #include <memory>
 #include <string>
+#include <functional>
 using namespace std;

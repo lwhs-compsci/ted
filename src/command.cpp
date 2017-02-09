@@ -11,9 +11,10 @@ namespace ted {
 		if(isdigit(str[i])) {
 			size_t o = parse_number(str, i);
 			if(str[i] == ':') {
+				i++;
 				size_t e = parse_number(str, i);
 				if(e < o) throw;
-				return make_unique<text_objects::line_range>(o, e-o);
+				return make_unique<text_objects::line_range>(o, ((e+1)-o));
 			}
 			return make_unique<text_objects::line>(o);
 		}
