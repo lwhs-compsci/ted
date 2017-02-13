@@ -28,6 +28,12 @@ namespace ted {
 		auto next_space = str.find_first_of(' ');
 		string kwd = str.substr(i, next_space-i);
 		if (kwd == "q" || kwd == "exit" || kwd == "quit") return make_unique<commands::quit_command>(); 
+		i = next_space+1;
+		if (kwd == "i") {
+			fto = parse_text_object(str, i);
+			if (fto == nullptr) fto = make_unique<text_objects::current_line>();
+			return make_unique<commands::insert_command>(move(fto), str.substr(i));
+		}
 		return nullptr;
 	}
 }

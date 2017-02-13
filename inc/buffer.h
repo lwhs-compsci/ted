@@ -31,6 +31,18 @@ namespace ted {
 			}
 		}
 
+		void insert_at(text_object* tr, const string& pld) {
+			switch (tr->type) {
+			case text_object::line:
+			case text_object::line_range: {
+				auto ix = ((text_objects::line*)tr)->offset;
+				auto L = lines.begin();
+				for (; ix > 0; --ix) L++;
+				lines.insert(L, pld);
+			} break;
+			}
+		}
+
 		void write();
 
 		

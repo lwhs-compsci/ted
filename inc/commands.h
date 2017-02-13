@@ -13,6 +13,14 @@ namespace ted {
 			}
 		};
 
+		struct insert_command : public command {
+			insert_command(unique_ptr<text_object>&& tr, const string& pld) : command(move(tr), make_unique<string>(pld)) {}
+
+			void apply(buffer& buf) const override {
+				buf.insert_at(target.get(), *payload);
+			}
+		};
+
 		struct quit_command : public command {
 			quit_command() {}
 			void apply(buffer& buf) const override {
